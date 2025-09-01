@@ -1,0 +1,52 @@
+{
+  "invoiceNumber": "INV-2024-001",
+  "date": "2024-01-15T10:30:00Z",
+  "dueDate": "2024-02-14T10:30:00Z",
+  "customer": {
+    "name": "John Smith",
+    "companyName": "Acme Corporation",
+    "email": "john.smith@acme.com",
+    "phone": "+1-555-0123",
+    "address": {
+      "line1": "123 Business Street",
+      "line2": "Suite 200",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10001",
+      "country": "USA"
+    }
+  },
+  "amount": 2500.00,
+  "subtotal": 2358.49,
+  "taxAmount": 141.51,
+  "balance": 2500.00,
+  "memo": "Professional consulting services for Q4 2023",
+  "lineItems": [
+    {
+      "description": "Strategic Business Consulting",
+      "quantity": 20,
+      "unitPrice": 100.00,
+      "amount": 2000.00,
+      "itemName": "Consulting Hours",
+      "itemType": "Service"
+    },
+    {
+      "description": "Project Management",
+      "quantity": 15,
+      "unitPrice": 75.00,
+      "amount": 1125.00,
+      "itemName": "PM Hours",
+      "itemType": "Service"
+    },
+    {
+      "description": "Documentation and Reporting",
+      "quantity": 1,
+      "unitPrice": 233.49,
+      "amount": 233.49,
+      "itemName": "Documentation",
+      "itemType": "Service"
+    }
+  ],
+  "quickBooksId": "QB-INV-001",
+  "extractedAt": "2024-01-15T10:35:00Z"
+} 
