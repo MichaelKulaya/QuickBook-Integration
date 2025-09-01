@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.ServiceProcess;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,13 +9,13 @@ namespace QuickBooksETLService
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             // Check if running as a service or console
             if (args.Length > 0 && args[0].Equals("--console", StringComparison.OrdinalIgnoreCase))
             {
                 // Run as console application for debugging
-                RunAsConsole();
+                await RunAsConsole();
             }
             else
             {
@@ -23,7 +24,7 @@ namespace QuickBooksETLService
             }
         }
 
-        static void RunAsConsole()
+        static async Task RunAsConsole()
         {
             Console.WriteLine("QuickBooks ETL Service - Console Mode");
             Console.WriteLine("Press Ctrl+C to exit");
@@ -36,11 +37,7 @@ namespace QuickBooksETLService
                     .ConfigureServices((context, services) =>
                     {
                         // Register services
-                        services.AddSingleton<Models.ServiceConfiguration>();
-                        services.Configure<Models.ServiceConfiguration>(
-                            context.Configuration.GetSection("ServiceSettings"),
-                            context.Configuration.GetSection("QuickBooksSettings"),
-                            context.Configuration.GetSection("WebhookSettings"));
+                        services.Configure<Models.ServiceConfiguration>(context.Configuration);
 
                         services.AddSingleton<Services.IQuickBooksService, Services.QuickBooksService>();
                         services.AddSingleton<Services.IWebhookService, Services.WebhookService>();
@@ -52,7 +49,7 @@ namespace QuickBooksETLService
                         logging.ClearProviders();
                         logging.AddConfiguration(context.Configuration.GetSection("Logging"));
                         logging.AddConsole();
-                        logging.AddFile("logs/quickbooks-etl-console.log");
+                        // File logging will be handled by Serilog in production
                     })
                     .Build();
 
@@ -71,7 +68,18 @@ namespace QuickBooksETLService
                 };
 
                 // Keep running until cancelled
-                host.WaitForShutdown(cts.Token);
+                try
+                {
+                    // Wait for cancellation
+                    while (!cts.Token.IsCancellationRequested)
+                    {
+                        await Task.Delay(1000, cts.Token);
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Expected when Ctrl+C is pressed
+                }
             }
             catch (Exception ex)
             {

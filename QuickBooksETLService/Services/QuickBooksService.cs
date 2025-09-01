@@ -56,6 +56,9 @@ namespace QuickBooksETLService.Services
                     return false;
                 }
 
+                // Simulate async operation
+                await Task.Delay(100);
+
                 _isConnected = true;
                 _logger.LogInformation("Successfully connected to QuickBooks company file: {CompanyFile}", _connectionString);
                 return true;
@@ -78,6 +81,9 @@ namespace QuickBooksETLService.Services
                     _connectionString = string.Empty;
                     _logger.LogInformation("Successfully disconnected from QuickBooks");
                 }
+                
+                // Simulate async operation
+                await Task.Delay(50);
             }
             catch (Exception ex)
             {
@@ -87,6 +93,7 @@ namespace QuickBooksETLService.Services
 
         public async Task<bool> IsConnectedAsync()
         {
+            await Task.CompletedTask;
             return _isConnected && !string.IsNullOrEmpty(_connectionString) && File.Exists(_connectionString);
         }
 
@@ -182,6 +189,9 @@ namespace QuickBooksETLService.Services
             // 1. Use QBXML to query QuickBooks for invoice data
             // 2. Parse the XML response
             // 3. Map the data to your Invoice model
+
+            // Simulate async database/API call
+            await Task.Delay(50);
 
             var invoices = new List<Invoice>();
             

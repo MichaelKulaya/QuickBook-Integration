@@ -75,17 +75,7 @@ namespace QuickBooksETLService.Services
             _logger.LogInformation("QuickBooks ETL Service stopped");
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("ETL Service starting...");
-            await Task.CompletedTask;
-        }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("ETL Service stopping...");
-            await Task.CompletedTask;
-        }
 
         public async Task ProcessInvoicesAsync(CancellationToken cancellationToken)
         {

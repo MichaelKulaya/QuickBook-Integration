@@ -14,7 +14,7 @@ if %errorLevel% == 0 (
 
 REM Get the current directory
 set "CURRENT_DIR=%~dp0"
-set "SERVICE_PATH=%CURRENT_DIR%QuickBooksETLService\bin\Release\net6.0-windows\QuickBooksETLService.exe"
+set "SERVICE_PATH=%CURRENT_DIR%QuickBooksETLService\bin\Release\net6.0-windows7.0\QuickBooksETLService.exe"
 
 REM Check if the executable exists
 if not exist "%SERVICE_PATH%" (

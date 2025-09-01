@@ -329,3 +329,34 @@ For issues and questions:
 ## License
 
 This project is provided as-is for integration purposes. Ensure compliance with QuickBooks licensing and your organization's policies. 
+
+## MSI Installer (WiX v4)
+
+This repo includes a WiX v4 definition to build an MSI that installs and starts the Windows Service.
+
+### Prerequisites
+- .NET 6 SDK
+- WiX v4 CLI (the build script installs it automatically if missing)
+
+### Build the MSI
+```cmd
+build-msi.bat
+```
+Output: `dist\QuickBooksETLService.msi`
+
+### Install the MSI
+- Double-click the MSI and follow the wizard, or
+- Command line (as Administrator):
+```cmd
+msiexec /i dist\QuickBooksETLService.msi /qn
+```
+
+### Uninstall
+```cmd
+msiexec /x dist\QuickBooksETLService.msi /qn
+```
+
+Notes:
+- The installer copies files to `C:\Program Files\YourCompany\QuickBooksETLService`, installs the service `QuickBooksETLService`, sets Start=Automatic, and starts it.
+- Edit `installer/Product.wxs` to change company name, version, or include more files.
+- For production, code-sign the MSI. 

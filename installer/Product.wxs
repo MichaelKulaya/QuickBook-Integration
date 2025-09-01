@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Package Name="QuickBooks ETL Service"
+			 Manufacturer="Your Company"
+			 Version="1.0.0"
+			 UpgradeCode="E9B1D0B9-1D5F-43B6-94A3-2B9F3E0A1B10"
+			 Language="1033"
+			 InstallerVersion="500"
+			 Scope="perMachine">
+
+		<StandardDirectory Id="ProgramFiles64Folder">
+			<Directory Name="YourCompany">
+				<Directory Name="QuickBooksETLService" Id="INSTALLDIR">
+					<Component Id="ServiceComponent" Guid="3B972C8A-4F25-4A2C-BB03-2A144B0BC2A2">
+						<File Source="..\QuickBooksETLService\bin\Release\net6.0-windows\QuickBooksETLService.exe" Id="ServiceExe" KeyPath="yes"/>
+						<File Source="..\QuickBooksETLService\appsettings.json"/>
+						<File Source="..\QuickBooksETLService\appsettings.Development.json"/>
+						<ServiceInstall Name="QuickBooksETLService"
+										 DisplayName="QuickBooks ETL Service"
+										 Description="Extracts invoices from QuickBooks Desktop and sends to ETL webhook"
+										 Start="auto" Type="ownProcess" ErrorControl="normal"/>
+						<ServiceControl Name="QuickBooksETLService" Start="install" Stop="both" Remove="uninstall" Wait="yes"/>
+					</Component>
+				</Directory>
+			</Directory>
+		</StandardDirectory>
+
+		<SetVariable Id="WixUILicenseRtf" Value="license.rtf"/>
+		<Feature Id="ProductFeature" Title="QuickBooks ETL Service" Level="1">
+			<ComponentRef Id="ServiceComponent"/>
+		</Feature>
+
+		<UIRef Id="WixUI_InstallDir"/>
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR"/>
+	</Package>
+</Wix>

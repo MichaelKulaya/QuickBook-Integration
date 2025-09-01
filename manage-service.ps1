@@ -17,7 +17,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $ServiceName = "QuickBooksETLService"
 $ServiceDisplayName = "QuickBooks ETL Service"
 $ProjectPath = Split-Path -Parent $MyInvocation.MyCommand.Path
-$ServiceExePath = Join-Path $ProjectPath "QuickBooksETLService\bin\Release\net6.0-windows\QuickBooksETLService.exe"
+$ServiceExePath = Join-Path $ProjectPath "QuickBooksETLService\bin\Release\net6.0-windows7.0\QuickBooksETLService.exe"
 
 function Get-ServiceStatus {
     try {

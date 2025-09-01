@@ -24,11 +24,7 @@ namespace QuickBooksETLService
                 .ConfigureServices((context, services) =>
                 {
                     // Register services
-                    services.AddSingleton<QuickBooksETLService.Models.ServiceConfiguration>();
-                    services.Configure<QuickBooksETLService.Models.ServiceConfiguration>(
-                        context.Configuration.GetSection("ServiceSettings"),
-                        context.Configuration.GetSection("QuickBooksSettings"),
-                        context.Configuration.GetSection("WebhookSettings"));
+                    services.Configure<QuickBooksETLService.Models.ServiceConfiguration>(context.Configuration);
 
                     services.AddSingleton<Services.IQuickBooksService, Services.QuickBooksService>();
                     services.AddSingleton<Services.IWebhookService, Services.WebhookService>();
