@@ -1,0 +1,5 @@
+D:\Projects\QuickBook Integration\obj\Release\net6.0-windows\QuickBooksETLService.csproj.AssemblyReference.cache
+D:\Projects\QuickBook Integration\obj\Release\net6.0-windows\QuickBooksETLService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\QuickBook Integration\obj\Release\net6.0-windows\QuickBooksETLService.AssemblyInfoInputs.cache
+D:\Projects\QuickBook Integration\obj\Release\net6.0-windows\QuickBooksETLService.AssemblyInfo.cs
+D:\Projects\QuickBook Integration\obj\Release\net6.0-windows\QuickBooksETLService.csproj.CoreCompileInputs.cache

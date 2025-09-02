@@ -26,7 +26,14 @@ A Windows Service that integrates QuickBooks Desktop with an ETL webhook API, au
 1. Visit [Intuit Developer](https://developer.intuit.com/app/developer/qbdesktop/docs/get-started/get-started-with-quickbooks-desktop-sdk)
 2. Download the QuickBooks Desktop SDK
 3. Install the SDK on your system
-4. Copy the `Interop.QBFC13Lib.dll` file to the `lib` folder in your project
+4. **Copy the `Interop.QBFC13Lib.dll` file to the `lib` folder in your project**
+
+**Important**: The DLL is typically found in one of these locations after SDK installation:
+- `C:\Program Files (x86)\Intuit\IDN\QBSDK13\`
+- `C:\Program Files\Intuit\IDN\QBSDK13\`
+- `C:\QBSDK\`
+
+**Without this DLL, the service will not build successfully.**
 
 ### 2. Build the Service
 
@@ -197,22 +204,30 @@ QuickBooksETLService.exe --console
 
 ### Common Issues
 
-1. **Service won't start**
+1. **Build fails with "Could not locate the assembly Interop.QBFC13Lib"**
+   - **Solution**: Install QuickBooks Desktop SDK and copy `Interop.QBFC13Lib.dll` to the `lib` folder
+   - The DLL is typically in: `C:\Program Files\Intuit\IDN\QBSDK13\`
+
+2. **Package version conflicts during build**
+   - **Solution**: Run `dotnet restore` to update package versions
+   - Ensure you have the latest .NET 6.0 SDK
+
+3. **Service won't start**
    - Ensure QuickBooks Desktop is installed and running
    - Check that the QuickBooks SDK is properly installed
    - Verify the service has appropriate permissions
 
-2. **Connection to QuickBooks fails**
+4. **Connection to QuickBooks fails**
    - Ensure QuickBooks Desktop is open
    - Check that the company file is accessible
    - Verify the QuickBooks application is registered
 
-3. **Webhook requests fail**
+5. **Webhook requests fail**
    - Check network connectivity
    - Verify the webhook endpoint URL is correct
    - Check firewall settings
 
-4. **No invoices are processed**
+6. **No invoices are processed**
    - Verify the polling interval is appropriate
    - Check that there are new invoices in QuickBooks
    - Review the service logs for errors

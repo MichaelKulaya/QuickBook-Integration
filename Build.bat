@@ -1,6 +1,16 @@
 @echo off
 echo Building QuickBooks ETL Service...
 
+REM Check if QuickBooks SDK DLL exists
+if not exist "lib\Interop.QBFC13Lib.dll" (
+    echo WARNING: QuickBooks SDK DLL not found!
+    echo Please install QuickBooks Desktop SDK and copy Interop.QBFC13Lib.dll to lib folder
+    echo The DLL is typically found in: C:\Program Files\Intuit\IDN\QBSDK13\
+    echo.
+    echo Continuing build anyway (will fail if QuickBooks SDK is required)...
+    echo.
+)
+
 REM Check if .NET 6.0 is installed
 dotnet --version >nul 2>&1
 if %errorLevel% neq 0 (
