@@ -1,0 +1,45 @@
+{
+  "invoiceNumber": "INV-2024-001",
+  "date": "2024-01-15T10:30:00Z",
+  "customer": {
+    "name": "Acme Corporation",
+    "id": "80000001-1234567890",
+    "email": "billing@acmecorp.com",
+    "phone": "+1-555-123-4567",
+    "address": {
+      "line1": "123 Business Street",
+      "line2": "Suite 100",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10001",
+      "country": "USA"
+    }
+  },
+  "amount": 1500.00,
+  "lineItems": [
+    {
+      "itemName": "Professional Services",
+      "description": "Software development and consulting services",
+      "quantity": 40.0,
+      "rate": 25.00,
+      "amount": 1000.00,
+      "itemType": "Service"
+    },
+    {
+      "itemName": "Software License",
+      "description": "Annual software license fee",
+      "quantity": 1.0,
+      "rate": 500.00,
+      "amount": 500.00,
+      "itemType": "NonInventory"
+    }
+  ],
+  "taxAmount": 120.00,
+  "totalAmount": 1620.00,
+  "dueDate": "2024-02-14T23:59:59Z",
+  "memo": "Payment due within 30 days",
+  "terms": "Net 30",
+  "status": "Open",
+  "createdDate": "2024-01-15T10:30:00Z",
+  "modifiedDate": "2024-01-15T10:30:00Z"
+}
